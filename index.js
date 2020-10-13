@@ -3,7 +3,7 @@ module.exports = dragDrop
 
 const parallel = require('run-parallel')
 
-function dragDrop (elem, listeners) {
+function dragDrop (elem, listeners, contentSetterFunc) {
   if (typeof elem === 'string') {
     const selector = elem
     elem = window.document.querySelector(elem)
@@ -144,7 +144,7 @@ function dragDrop (elem, listeners) {
           return item.isDirectory
         })
 
-        listeners.onDrop(files, pos, fileList, directories)
+        listeners.onDrop(files, pos, fileList, directories, elem, contentSetterFunc)
       })
     }
 
